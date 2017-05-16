@@ -7,4 +7,17 @@ function energy = comp_energy(data_cost, disparity, lambda)
 % lambda : a scalar value
 % energy : a scalar value
       
+energy = 0;
+% 1rst step : Find selected terms of data_cost
+[h, w, ~] = size(data_cost); 
+for x=1:w
+    for y=1:h
+        energy = energy + data_cost(y, x, disparity(y, x) + 1);
+    end
+end
+
+% Computing other term
+vertical = (disparity(1:h-1, :) ~= disparity(2:h, :));
+horizontal = (disparity(:, 1:w-1) ~= disparity(:, 2:w));
+energy = energy + lambda*(sum(vertical(:)) + sum(horizontal(:)));
 end
