@@ -18,6 +18,8 @@ function [ beliefs ] = comp_belief( data_cost, msg_up, msg_down, msg_left, msg_r
 %   element beliefs(y,x,l) is the belief of pixel p = (y,x) taking the
 %   label l
 
+beliefs = data_cost;
+beliefs = beliefs + msg_up + msg_down + msg_right + msg_left;
 
 end
 
