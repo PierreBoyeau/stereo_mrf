@@ -12,7 +12,7 @@ energy = 0;
 [h, w, ~] = size(data_cost); 
 for x=1:w
     for y=1:h
-        energy = energy + data_cost(y, x, disparity(y, x) + 1);
+        energy = energy + data_cost(y, x, disparity(y, x));
     end
 end
 
