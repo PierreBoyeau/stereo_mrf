@@ -5,6 +5,6 @@ function disparity = comp_MAP_labeling(beliefs)
 % disparity: a 2D array of size height x width the disparity value of each 
 %   pixel; the disparity values range from 0 till num_disp_value - 1
 
-[~, disparity] = max(beliefs, [], 3); 
+[~, disparity] = min(beliefs, [], 3); 
 end
     

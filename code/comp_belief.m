@@ -17,9 +17,12 @@ function [ beliefs ] = comp_belief( data_cost, msg_up, msg_down, msg_left, msg_r
 % beliefs: a 3D array of size height x width x num_disp_value; each
 %   element beliefs(y,x,l) is the belief of pixel p = (y,x) taking the
 %   label l
-
+[height, width, ~] = size(data_cost);
 beliefs = data_cost;
-beliefs = beliefs + msg_up + msg_down + msg_right + msg_left;
+beliefs(:, 1:width-1, :) = beliefs(:, 1:width-1, :) + msg_left(:, 2:width, :);
+beliefs(:, 2:width, :) = beliefs(:, 2:width, :) + msg_right(:, 1:width-1, :);
+beliefs(1:height-1, :, :) = beliefs(1:height-1, :, :) + msg_up(2:height, :, :);
+beliefs(2:height,:,:) = beliefs(2:height,:,:) + msg_down(1:height-1,:,:);
 
 end
 

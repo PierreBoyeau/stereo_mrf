@@ -28,7 +28,7 @@ img_right = conv2(single(img_right), myfilter, 'same');
 
 % estimate the disparity map with the Max-Product Loopy Belief Propagation
 % Algorithm
-lambda = 10;
+lambda = 1000;
 [disparity_est, energy] = stereo_belief_propagation(img_left, img_right, lambda);
 
 figure(3); clf(3);
